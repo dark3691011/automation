@@ -25,7 +25,7 @@ describe('Test danger box', function() {
   })
 
   afterEach(async function(){
-    // await driver.close();
+    await driver.close();
   })
 
   it('Test choose item', async function() {
@@ -36,26 +36,28 @@ describe('Test danger box', function() {
     await driver.findElement(webdriver.By.css('button[form="chooseForm"]')).click();
     
     //create order
+    // let elm = await driver.findElement(webdriver.By.xpath('//div[@class="ant-menu-submenu-title"]'));
+    // driver.actions({bridge: true})
+    // .move({x: 0, y: 0, origin: elm})
+    // .perform();
+
+    //create order
     await driver.findElement(webdriver.By.css('a[href="/sell"]')).click();
-    sleep(1000);
+    sleep(5000);
     await driver.findElement(webdriver.By.id('cmb-employee')).click();
     sleep(100);
     await driver.findElement(webdriver.By.xpath("(//div[@class='ant-select-item-option-content'])[3]")).click();
-    
-    let keyword = "u";
-    await driver.findElement(webdriver.By.id('search-product-input_1')).sendKeys(keyword);
-    sleep(1000);
-    let items = await driver.findElements(webdriver.By.xpath('(//div[contains(@class,"ant-select-item ant-select-item-option")])'));
 
-    for(let item of items){
-      let id = await item.getAttribute('id');
-      let quantity = await driver.findElement(webdriver.By.xpath(`//div[@id='${id}'] //div[contains(text(),'có sẵn')] //span`)).getText();
-      quantity = Number(quantity.replace(',',''));
-      if(quantity > 0){
-        item.click();
-        break;
-      }
-    }
+
+    await driver.findElement(webdriver.By.css('a[href="/sell"]')).click();
+    let abc = await driver.findElement(webdriver.By.id('search-product-input_1'));
+    await abc.click();
+    await driver.actions()
+     .keyDown(webdriver.Key.NUMPAD5)
+     .keyDown(webdriver.Key.NUMPAD4)
+     .keyDown(webdriver.Key.NUMPAD6)
+     .perform();
+
   });
 });
 

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node index.js",
-    "test": "npx mocha --no-timeouts 'TestFolder/test-2.js'",
+    "test": "npx mocha --no-timeouts 'TestFolder/test-input-quantity.js'",
     "test2": "npx mocha --no-timeouts 'TestFolder/*.js' --parallel",
     "test3": "npx mocha --no-timeouts 'TestFolder/*.js' --parallel --reporter mochawesome --require mochawesome/register"
   },
