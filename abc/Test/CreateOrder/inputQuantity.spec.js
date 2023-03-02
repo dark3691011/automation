@@ -34,15 +34,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const chai_1 = require("chai");
 require("selenium-webdriver");
-const selenium_webdriver_1 = require("selenium-webdriver");
 const LoginFunc = __importStar(require("../../Func/Login/login.Func"));
+const clickStoreFunc = __importStar(require("../../Func/CreateOrder/clickStore"));
+const searchProFunc = __importStar(require("../../Func/CreateOrder/searchProduct"));
 const BaseFunc = __importStar(require("../../Util/base"));
-describe('Test Login', function () {
+describe('Test input quantity', function () {
     let driver;
     beforeEach(function () {
         return __awaiter(this, void 0, void 0, function* () {
             driver = yield BaseFunc.setDriver();
             yield LoginFunc.login(driver);
+            yield LoginFunc.chooseShop(driver);
+            yield clickStoreFunc.clickStore(driver);
+            yield clickStoreFunc.chooseEmployee(driver, 3);
+            const items = yield searchProFunc.searchProduct(driver, 'vita');
+            yield searchProFunc.chooseFirstProduct(driver, items);
         });
     });
     afterEach(function () {
@@ -50,17 +56,10 @@ describe('Test Login', function () {
             yield driver.close();
         });
     });
-    it('Login', function () {
+    it('Input quantity', function () {
         return __awaiter(this, void 0, void 0, function* () {
-            let currentName = yield driver.findElement(selenium_webdriver_1.By.id('user-fullname')).getText();
-            (0, chai_1.expect)(currentName).to.contains(LoginFunc.insideCodeLogin);
-        });
-    });
-    it('Choose shop', function () {
-        return __awaiter(this, void 0, void 0, function* () {
-            yield LoginFunc.chooseShop(driver);
-            let currentShopName = yield driver.findElement(selenium_webdriver_1.By.id('shop-info')).getText();
-            (0, chai_1.expect)(currentShopName).to.contains(LoginFunc.shopCode);
+            let check = yield searchProFunc.inputQuantity(driver, 999999999);
+            (0, chai_1.expect)(check).to.eq(true);
         });
     });
 });

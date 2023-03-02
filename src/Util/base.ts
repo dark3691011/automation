@@ -33,6 +33,7 @@ export async function slowlyInput(driver: any, delayTime: any, number: any){
     .keyDown(numToKey(item))
     .perform();
   }
+  sleep(1000);
 }
 
 export function sleep(miliseconds: any) {

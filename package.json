@@ -6,7 +6,7 @@
   "scripts": {
     "test-tmp": "npx mocha --no-timeouts 'TestFolder/*.js' --parallel --reporter mochawesome --require mochawesome/register",
     "test-new": "tsc && npx mocha --no-timeouts 'abc/Test/**/*.js' --parallel",
-    "testABC": "tsc && npx mocha --no-timeouts 'abc/Test/**/login.spec.js'"
+    "testABC": "tsc && npx mocha --no-timeouts 'abc/Test/**/inputQuantity.spec.js'"
   },
   "author": "",
   "license": "ISC",

@@ -38,7 +38,7 @@ const LoginFunc = __importStar(require("../../Func/Login/login.Func"));
 const clickStoreFunc = __importStar(require("../../Func/CreateOrder/clickStore"));
 const searchProFunc = __importStar(require("../../Func/CreateOrder/searchProduct"));
 const BaseFunc = __importStar(require("../../Util/base"));
-describe('Test danger box', function () {
+describe('Test search product', function () {
     let driver;
     beforeEach(function () {
         return __awaiter(this, void 0, void 0, function* () {
@@ -57,8 +57,9 @@ describe('Test danger box', function () {
     it('Search product', function () {
         return __awaiter(this, void 0, void 0, function* () {
             let items = yield searchProFunc.searchProduct(driver, 'vita');
-            console.log(items.length);
             (0, chai_1.expect)(items.length).to.gt(0);
+            let checkStocking = yield searchProFunc.chooseFirstProduct(driver, items);
+            (0, chai_1.expect)(checkStocking).to.eq(true);
         });
     });
 });

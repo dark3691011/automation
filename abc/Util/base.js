@@ -45,6 +45,7 @@ function slowlyInput(driver, delayTime, number) {
                 .keyDown(numToKey(item))
                 .perform();
         }
+        sleep(1000);
     });
 }
 exports.slowlyInput = slowlyInput;
