@@ -32,12 +32,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require("selenium-webdriver");
 const chai_1 = require("chai");
-const LoginFunc = __importStar(require("../TestA/login.Func"));
-const BaseFunc = __importStar(require("../Util/base"));
+require("selenium-webdriver");
 const selenium_webdriver_1 = require("selenium-webdriver");
-describe('Test danger box', function () {
+const LoginFunc = __importStar(require("../../Func/Login/login.Func"));
+const BaseFunc = __importStar(require("../../Util/base"));
+describe('Test Login', function () {
     let driver;
     beforeEach(function () {
         return __awaiter(this, void 0, void 0, function* () {
@@ -53,8 +53,15 @@ describe('Test danger box', function () {
         return __awaiter(this, void 0, void 0, function* () {
             yield LoginFunc.login(driver);
             let currentName = yield driver.findElement(selenium_webdriver_1.By.id('user-fullname')).getText();
-            console.log(currentName);
             (0, chai_1.expect)(currentName).to.contains(LoginFunc.insideCodeLogin);
+        });
+    });
+    it('Choose shop', function () {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield LoginFunc.login(driver);
+            yield LoginFunc.chooseShop(driver);
+            let currentShopName = yield driver.findElement(selenium_webdriver_1.By.id('shop-info')).getText();
+            (0, chai_1.expect)(currentShopName).to.contains(LoginFunc.shopCode);
         });
     });
 });

@@ -4,10 +4,9 @@
   "description": "no",
   "main": "index.js",
   "scripts": {
-    "test": "npx mocha --no-timeouts 'TestFolder/test-input-quantity.js'",
-    "test2": "npx mocha --no-timeouts 'TestFolder/*.js' --parallel",
-    "test3": "npx mocha --no-timeouts 'TestFolder/*.js' --parallel --reporter mochawesome --require mochawesome/register",
-    "test-new": "tsc && npx mocha --no-timeouts 'abc/TestB/*.js'"
+    "test-tmp": "npx mocha --no-timeouts 'TestFolder/*.js' --parallel --reporter mochawesome --require mochawesome/register",
+    "test-new": "tsc && npx mocha --no-timeouts 'abc/Test/**/*.js' --parallel",
+    "testABC": "tsc && npx mocha --no-timeouts 'abc/Test/**/login.spec.js'"
   },
   "author": "",
   "license": "ISC",
