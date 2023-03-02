@@ -27,7 +27,7 @@ describe('Test danger box', function() {
     await driver.close();
   })
 
-  it('Test choose item', async function() {
+  it('Test input quantity', async function() {
     //choose shop
     await driver.findElement(webdriver.By.id('onesignal-slidedown-cancel-button')).click();
     await driver.findElement(webdriver.By.id('shopCode')).sendKeys("90810");
